@@ -1,7 +1,7 @@
 package tddkata;
 
 public class Calc {
-    public String sum(String expression) {
+    public int sum(String expression) {
         throw new UnsupportedOperationException();
     }
 }
