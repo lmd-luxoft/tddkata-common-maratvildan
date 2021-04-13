@@ -45,4 +45,28 @@ public class CalcTest {
         int res = calc.sum("abc,2");
         assertEquals(-1, res);
     }
+
+    @Test
+    public void testIncorrectDelimiter1() {
+        Calc calc = new Calc();
+
+        int res = calc.sum("1;2");
+        assertEquals(-1, res);
+    }
+
+    @Test
+    public void testIncorrectDelimiter2() {
+        Calc calc = new Calc();
+
+        int res = calc.sum("1:2");
+        assertEquals(-1, res);
+    }
+
+    @Test
+    public void testIncorrectDelimiterAndNum() {
+        Calc calc = new Calc();
+
+        int res = calc.sum("1:abc");
+        assertEquals(-1, res);
+    }
 }
