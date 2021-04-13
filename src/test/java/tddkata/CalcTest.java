@@ -27,7 +27,7 @@ public class CalcTest {
         Calc calc = new Calc();
 
         int res = calc.sum("1,2");
-        assertEquals(0, res);
+        assertEquals(3, res);
     }
 
     @Test
