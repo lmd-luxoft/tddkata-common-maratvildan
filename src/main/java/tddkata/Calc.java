@@ -19,7 +19,11 @@ public class Calc {
         regex = "\\d{1,},\\d{1,}";
         if (expression.matches(regex)) {
             String[] split = StringUtils.split(expression, ",");
-            return Integer.valueOf(split[0]) + Integer.valueOf(split[1]);
+            try {
+                return Integer.valueOf(split[0]) + Integer.valueOf(split[1]);
+            } catch (NumberFormatException e) {
+                return INCORRECT;
+            }
         }
         return INCORRECT;
     }

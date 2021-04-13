@@ -69,4 +69,32 @@ public class CalcTest {
         int res = calc.sum("1:abc");
         assertEquals(expected, res);
     }
+
+    @Test
+    public void testIncorrectNum() {
+        int expected = -1;
+        int res = calc.sum("1,");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testMultipleAdding() {
+        int expected = 15;
+        int res = calc.sum("1,2,3,4,5");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testMultipleAddingIncorrectDelimiter() {
+        int expected = 15;
+        int res = calc.sum("1,2,3;4,5");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testMultipleAddingAbsentNumber() {
+        int expected = -1;
+        int res = calc.sum("1,2,,4,5");
+        assertEquals(expected, res);
+    }
 }
