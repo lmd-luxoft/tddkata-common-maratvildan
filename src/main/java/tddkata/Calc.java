@@ -12,19 +12,15 @@ public class Calc {
         if (StringUtils.isEmpty(expression)) {
             return 0;
         }
-        String regex = "\\d{1,}";
-        if (expression.matches(regex)) {
-            return Integer.valueOf(expression);
-        }
-        regex = "\\d{1,},\\d{1,}";
-        if (expression.matches(regex)) {
+        try {
             String[] split = StringUtils.split(expression, ",");
-            try {
-                return Integer.valueOf(split[0]) + Integer.valueOf(split[1]);
-            } catch (NumberFormatException e) {
-                return INCORRECT;
+            int sum = 0;
+            for (String s : split) {
+                sum += Integer.valueOf(s);
             }
+            return sum;
+        } catch (NumberFormatException e) {
+            return INCORRECT;
         }
-        return INCORRECT;
     }
 }
