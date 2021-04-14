@@ -118,4 +118,11 @@ public class CalcTest {
         int res = calc.sum("1,\n");
         assertEquals(expected, res);
     }
+
+    @Test
+    public void testMultipleLineBreaks() {
+        int expected = -1;
+        int res = calc.sum("1\n\n2");
+        assertEquals(expected, res);
+    }
 }

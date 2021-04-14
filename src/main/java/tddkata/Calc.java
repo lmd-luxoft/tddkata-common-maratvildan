@@ -9,11 +9,19 @@ public class Calc {
         if (expression == null) {
             return INCORRECT;
         }
+        if (StringUtils.isEmpty(expression)) {
+            return 0;
+        }
         try {
-            String[] split = StringUtils.split(expression, ",");
+            String replaced = expression.replace("\n", ",");
+            String[] split = StringUtils.split(replaced, ",");
+            // проверяем, есть ли подряд идущие разделители, такие как "1,,2" например
+            if (StringUtils.countMatches(replaced, ",") + 1 != split.length) {
+                return INCORRECT;
+            }
             int sum = 0;
             for (String s : split) {
-                sum += Integer.valueOf(s);
+                sum += Integer.parseInt(s);
             }
             return sum;
         } catch (NumberFormatException e) {
