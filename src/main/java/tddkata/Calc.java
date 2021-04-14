@@ -13,7 +13,16 @@ public class Calc {
             return 0;
         }
         try {
-            String replaced = expression.replace("\n", ",");
+            String possibleDelims = "\n";
+            if (expression.startsWith("//") && expression.indexOf("\n") == 3) {
+                possibleDelims = String.valueOf(expression.charAt(2));
+                expression = expression.substring(4);
+                // запятая уже не валидна:
+                if (expression.contains(",")) {
+                    return INCORRECT;
+                }
+            }
+            String replaced = expression.replace(possibleDelims, ",");
             String[] split = StringUtils.split(replaced, ",");
             // проверяем, есть ли подряд идущие разделители, такие как "1,,2" например
             if (StringUtils.countMatches(replaced, ",") + 1 != split.length) {
