@@ -125,4 +125,47 @@ public class CalcTest {
         int res = calc.sum("1\n\n2");
         assertEquals(expected, res);
     }
+
+    // тесты с собственным разделителем:
+    @Test
+    public void testCorrectSpecificDelimiter() {
+        int expected = 3;
+        int res = calc.sum("//^\n1^2");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectSpecificDelimiter1() {
+        int expected = -1;
+        int res = calc.sum("//^\n1^2,3");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectSpecificDelimiter2() {
+        int expected = -1;
+        int res = calc.sum("//^\1^2");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectSpecificDelimiterDoubled() {
+        int expected = -1;
+        int res = calc.sum("//^\n1^^2");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectSpecificDelimiterNoSlash() {
+        int expected = -1;
+        int res = calc.sum("/^\n1^2");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectSpecificDelimiterOneArgOnly() {
+        int expected = -1;
+        int res = calc.sum("//^\n^2");
+        assertEquals(expected, res);
+    }
 }
