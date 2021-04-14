@@ -9,9 +9,6 @@ public class Calc {
         if (expression == null) {
             return INCORRECT;
         }
-        if (StringUtils.isEmpty(expression)) {
-            return 0;
-        }
         try {
             String[] split = StringUtils.split(expression, ",");
             int sum = 0;

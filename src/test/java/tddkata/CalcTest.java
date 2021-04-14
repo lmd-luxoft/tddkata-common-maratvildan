@@ -83,4 +83,32 @@ public class CalcTest {
         int res = calc.sum("1,2,3;4,5");
         assertEquals(expected, res);
     }
+
+    @Test
+    public void testMultipleDelimiter() {
+        int expected = 3;
+        int res = calc.sum("1\n2");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectMultipleDelimiter1() {
+        int expected = -1;
+        int res = calc.sum("1,\n2");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testIncorrectMultipleDelimiter2() {
+        int expected = -1;
+        int res = calc.sum("1;2\n3");
+        assertEquals(expected, res);
+    }
+
+    @Test
+    public void testCorrectMultipleDelimiter() {
+        int expected = 6;
+        int res = calc.sum("1\n2,3");
+        assertEquals(expected, res);
+    }
 }
