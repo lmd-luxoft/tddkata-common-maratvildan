@@ -111,4 +111,11 @@ public class CalcTest {
         int res = calc.sum("1\n2,3");
         assertEquals(expected, res);
     }
+
+    @Test
+    public void testOneArgIncorrectMultipleDelimiter() {
+        int expected = -1;
+        int res = calc.sum("1,\n");
+        assertEquals(expected, res);
+    }
 }
