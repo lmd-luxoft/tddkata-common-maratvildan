@@ -3,6 +3,7 @@ package tddkata;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalcTest {
     Calc calc = new Calc();
@@ -167,5 +168,17 @@ public class CalcTest {
         int expected = -1;
         int res = calc.sum("//^\n^2");
         assertEquals(expected, res);
+    }
+
+    @Test
+    public void throwsExceptionSingle() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calc.sum("-1,2"));
+        exception.getMessage().equals("Negatives not allowed -1");
+    }
+
+    @Test
+    public void throwsExceptionMultiple() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> calc.sum("-1,3,-2"));
+        exception.getMessage().equals("Negatives not allowed -1,-2");
     }
 }
